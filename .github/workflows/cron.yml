@@ -1,0 +1,19 @@
+name: Trigger Function on Schedule
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Runs every day at 3:20 PM IST (9:20 AM UTC)
+    - cron: '33 12 * * *'  # Runs every day at 3:20 PM IST (9:20 AM UTC)
+  workflow_dispatch:  # This allows manual triggering from the GitHub UI
+
+jobs:
+  trigger-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Trigger the Function via API
+      run: |
+        curl -X POST https://ad-excel-fetch.onrender.com/trigger-function
