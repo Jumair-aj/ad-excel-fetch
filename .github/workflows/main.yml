@@ -1,0 +1,17 @@
+name: Trigger Function on Schedule
+
+on:
+  schedule:
+    - cron: '30 10 * * *'  # Runs every day at 3:20 PM IST (9:20 AM UTC)
+
+jobs:
+  trigger-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Trigger the Function via API
+      run: |
+        curl -X POST https://ad-excel-fetch.onrender.com/trigger-function
