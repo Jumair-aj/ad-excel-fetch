@@ -75,7 +75,7 @@ const apiEndpoints = [
 
 // Authenticate with Google
 const auth = new google.auth.GoogleAuth({
-    keyFile: "client_secret_1071299587561-5unmgmuvb4qtssd3qe2v11e5qj2ekts6.apps.googleusercontent.com.json", // Service account key
+    keyFile: "/etc/secrets/client_secret_1071299587561-5unmgmuvb4qtssd3qe2v11e5qj2ekts6.apps.googleusercontent.com.json", // Service account key
     scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 
