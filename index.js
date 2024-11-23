@@ -2,6 +2,12 @@ const { google } = require("googleapis");
 const cron = require("node-cron");
 const axios = require("axios");
 const { parseStringPromise } = require("xml2js");
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.json());
+
 
 const SHEET_ID = "1rJg9dmsQGKAbPtZWEoOgVaLiaNg3HVZRNVJRyt4k9f0"; // The ID of your Google Sheet
 const RANGE = "Sheet1!A:Z"; // This tells Google Sheets to append to the next available row
@@ -473,10 +479,19 @@ async function appendToSheetHorizontally(data, apiName) {
 }
 
 
-// Schedule the process
-// cron.schedule("20 15 * * *", async () => {
-//     console.log("Fetching and appending data...");
+// Expose an endpoint to trigger the function
+app.post('/trigger-function', (req, res) => {
+    try {
     main();
-// });
+        res.status(200).send('Function triggered successfully!');
+    } catch (error) {
+        res.status(500).send('Error triggering function');
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
 
 console.log("Scheduler started...");
