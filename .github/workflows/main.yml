@@ -3,6 +3,7 @@ name: Trigger Function on Schedule
 on:
   schedule:
     - cron: '28 11 * * *'  # Runs every day at 3:20 PM IST (9:20 AM UTC)
+  workflow_dispatch:  # This allows manual triggering from the GitHub UI
 
 jobs:
   trigger-job:
