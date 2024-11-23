@@ -3,7 +3,11 @@ const cron = require("node-cron");
 const axios = require("axios");
 const { parseStringPromise } = require("xml2js");
 const express = require('express');
-const app = express();
+var cors = require('cors');
+var app = express();
+
+app.use(cors());
+    
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
